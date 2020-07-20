@@ -39,7 +39,7 @@ html(lang="en")
                                 option=val.fullName
 
         input(type="hidden", name="currentStock" value=stockSymbol)
-        div#chart-wrapper
+        div#chart-wrapperStock
             button.industry_icon= data.finnhubIndustry
             div#current-price
                 span(id="current-company-name")= companyName
@@ -91,6 +91,7 @@ html(lang="en")
                     div
                         form(id="buy" action="/transactions/buy", method="post")
                             input(type="hidden", name="symbol" value=stockSymbol)
+                            input(type="hidden", name="buysell" value="buy" class="buysell")
                             div#shares-or-dollars
                                 input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
                     div.line-break
@@ -101,14 +102,14 @@ html(lang="en")
                     div.create-fullline
                 div#estimate-cost
 
-                    span.buyLabels Estimated Cost
+                    span.buyLabels.estimatedCost Estimated Cost:
                     span#estimate-cost__span
-                button#buy-button(type="submit" form="buy").review_order Review Order
+                button#buy-button(type="submit" form="buy").review_order Submit Buy
                 div
                     div.create-fullline
-                //- div.flavorText
-                //-     h4 Introducing Fractional Shares
-                //-     p Invest in thousands of stocks with as little as $1
+                div.flavorText
+                    h4 Introducing Fractional Shares
+                    p Invest in thousands of stocks with as little as $1
             div#sell-stock.tabcontent
                 div#transaction-form__sell.hidden
                     form(action="/transactions/sell", method="post")
